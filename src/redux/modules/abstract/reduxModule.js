@@ -129,11 +129,11 @@ export class ReduxModule {
   }
 
   set (actionName, field) {
-    return this.createHandler(actionName, {}, this.setReducer(field));
+    return this.createHandler(actionName, null, this.setReducer(field));
   }
 
   setIn (actionName, path) {
-    return this.createHandler(actionName, {}, this.setInReducer(path));
+    return this.createHandler(actionName, null, this.setInReducer(path));
   }
 
   setField (actionName) {
@@ -141,27 +141,27 @@ export class ReduxModule {
   }
 
   reset (actionName, field, defaultValue) {
-    return this.createHandler(actionName, {}, this.resetReducer(field, defaultValue));
+    return this.createHandler(actionName, null, this.resetReducer(field, defaultValue));
   }
 
   merge (actionName) {
-    return this.createHandler(actionName, {}, this.mergeReducer());
+    return this.createHandler(actionName, null, this.mergeReducer());
   }
 
   mergeIn (actionName, path) {
-    return this.createHandler(actionName, {}, this.mergeInReducer(path));
+    return this.createHandler(actionName, null, this.mergeInReducer(path));
   }
 
   toggle (actionName, field) {
-    return this.createHandler(actionName, {}, this.toggleReducer(field));
+    return this.createHandler(actionName, null, this.toggleReducer(field));
   }
 
   toggleIn (actionName, path) {
-    return this.createHandler(actionName, {}, this.toggleInReducer(path));
+    return this.createHandler(actionName, null, this.toggleInReducer(path));
   }
 
   resetToInitialState (actionName) {
-    return this.createHandler(actionName, {}, () => this._initialState);
+    return this.createHandler(actionName, null, () => this._initialState);
   }
 
 }
