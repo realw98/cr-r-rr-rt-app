@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types'
 import reduxConnect from './redux/utils/connect'
-import './App.css';
+import './App.scss';
 import Home from './containers/Home'
 import About from './containers/About'
 import {Redirect, Route, Switch} from 'react-router-dom';

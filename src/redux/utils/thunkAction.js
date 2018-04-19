@@ -1,5 +1,9 @@
 import {createAction} from 'redux-actions'
 
+export const tokenInject = (fn) =>
+  (dispatch, getState) =>
+    fn(dispatch, getState, getState().getIn(['auth', 'token']));
+
 const thunkAction = (actionName, actionMethod, emitPending = false, customPendingAction = false) => {
   const fulfilledAction = createAction(`${actionName} fulfilled`);
   const pendingAction = customPendingAction ||
