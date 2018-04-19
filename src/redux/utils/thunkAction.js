@@ -17,7 +17,7 @@ const thunkAction = (actionName, actionMethod, emitPending = false, customPendin
         emitPending && dispatch(pendingAction(false, true));
       };
 
-      const onError = (errors) => {
+      const onError = () => {
         emitPending && dispatch(pendingAction(false, false));
       };
 

@@ -1,0 +1,37 @@
+{
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended"
+  ],
+  "rules": {
+    "switch-colon-spacing": 0,
+    "no-console": 0,
+    "valid-jsdoc": 0,
+    "require-jsdoc": 0,
+    "no-invalid-this": 0,
+    "arrow-parens": 0,
+    "max-len": [
+      "error",
+      {"code": 120}
+    ]
+  },
+  "env": {
+    "es6": true,
+    "browser": true,
+    "node": true,
+    "jest": false
+  },
+  "plugins": [
+    "react"
+  ],
+  "parser": "babel-eslint",
+  "parserOptions": {
+    "ecmaVersion": 6,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true,
+      "modules": true,
+      "experimentalObjectRestSpread": true
+    }
+  }
+}

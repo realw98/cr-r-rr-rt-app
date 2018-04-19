@@ -89,7 +89,7 @@ export class ReduxModule {
   }
 
   resetReducer (field, defaultValue) {
-    return (state) => state.set(field, defaultValue);
+    return state => state.set(field, defaultValue);
   }
 
   mergeReducer () {
@@ -101,11 +101,11 @@ export class ReduxModule {
   }
 
   toggleReducer (field) {
-    return (state) => state.set(field, !state.get(field));
+    return state => state.set(field, !state.get(field));
   }
 
   toggleInReducer (path) {
-    return (state) => {
+    return state => {
       state.setIn(path, !state.getIn(path));
     }
   }

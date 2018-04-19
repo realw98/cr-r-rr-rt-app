@@ -21,9 +21,9 @@ function bindActionCreatorsRecursive (actions, dispatch) {
 
 export default function reduxConnect (stateMappings) {
 
-  return (component) => {
+  return component => {
 
-    const mapStateToProps = (state) => {
+    const mapStateToProps = state => {
 
       if (!stateMappings) {
         return {store: state.toJS()};
@@ -39,7 +39,7 @@ export default function reduxConnect (stateMappings) {
 
     };
 
-    const mapDispatchToProps = (dispatch) => ({
+    const mapDispatchToProps = dispatch => ({
       actions: bindActionCreatorsRecursive(rootActions, dispatch)
     });
 

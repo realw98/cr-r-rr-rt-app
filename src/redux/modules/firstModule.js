@@ -25,12 +25,8 @@ class FirstModule extends ReduxModule {
 
   defineReducers () {
     return {
-      [INCREMENT_VALUE]: (state) => {
-        return state.set('value', state.get('value') + 1);
-      },
-      [DECREMENT_VALUE]: (state) => {
-        return state.set('value', state.get('value') - 1);
-      }
+      [INCREMENT_VALUE]: state => state.set('value', state.get('value') + 1),
+      [DECREMENT_VALUE]: state => state.set('value', state.get('value') - 1)
     }
   }
 }
