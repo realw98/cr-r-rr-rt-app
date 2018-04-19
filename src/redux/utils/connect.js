@@ -23,21 +23,16 @@ export default function reduxConnect (stateMappings) {
 
   return component => {
 
-    const mapStateToProps = state => {
-
-      if (!stateMappings) {
-        return {store: state.toJS()};
-
-      } else {
+    const mapStateToProps = stateMappings ?
+      (state) => {
         let result = {};
         for (let propName in stateMappings) {
           result[propName] = state.getIn(stateMappings[propName]).toJS();
         }
         return result;
+      } :
 
-      }
-
-    };
+      (state) => ({store: state.toJS()});
 
     const mapDispatchToProps = dispatch => ({
       actions: bindActionCreatorsRecursive(rootActions, dispatch)
