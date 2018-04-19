@@ -1,5 +1,5 @@
 let appConfig = {
-  apiUrl: 'https://app.joinvibrant.com/api/'
+  apiUrl: ''
 };
 
 export default appConfig;
