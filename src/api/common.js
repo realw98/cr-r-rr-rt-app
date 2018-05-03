@@ -39,34 +39,36 @@ export const createApi = (httpMethod, url,
                             inputData = (payload) => payload,
                             outputData = (response) => response,
                           } = {}
-) => {
-  return (token, payload, ...args) => {
-    let requestUrl = url;
-    if (typeof urlData === 'function') {
-      const urlParams = urlData(payload, ...args);
-      console.log('%c urlParams=' + JSON.stringify(urlParams), 'color: green');
-      requestUrl = url.replace(/\{(.*?)\}/g, function (match, field) {
-        return urlParams[field];
-      });
-    }
-
-    let axiosOptions = {
-      method: httpMethod,
-      url: appConfig.apiUrl + requestUrl,
-      responseType: 'json',
-      headers: {
-        Authorization: 'Bearer ' + token,
-        Accept: 'application/json'
-      },
-      transformResponse: [outputData]
-    };
-
-    if (httpMethod === 'GET') {
-      axiosOptions.params = inputData(payload);
-    } else {
-      axiosOptions.data = inputData(payload);
-    }
-
-    return axios(axiosOptions);
+) => (token, payload, ...urlArgs) => {
+  let requestUrl = url;
+  if (typeof urlData === 'function') {
+    const urlParams = urlData(...urlArgs);
+    console.log('%c urlParams=' + JSON.stringify(urlParams), 'color: green');
+    requestUrl = url.replace(/\{(.*?)\}/g, function (match, field) {
+      return urlParams[field];
+    });
   }
+
+  let axiosOptions = {
+    method: httpMethod,
+    url: appConfig.apiUrl + requestUrl,
+    responseType: 'json',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json'
+    },
+    transformResponse: [outputData]
+  };
+
+  if (token) {
+    axiosOptions.headers.Authorization = 'Bearer ' + token;
+  }
+
+  if (httpMethod === 'GET') {
+    axiosOptions.params = inputData(payload);
+  } else {
+    axiosOptions.data = inputData(payload);
+  }
+
+  return axios(axiosOptions);
 };

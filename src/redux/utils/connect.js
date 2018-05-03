@@ -27,7 +27,8 @@ export default function reduxConnect (stateMappings) {
       (state) => {
         let result = {};
         for (let propName in stateMappings) {
-          result[propName] = state.getIn(stateMappings[propName]).toJS();
+          const prop = state.getIn(stateMappings[propName]);
+          result[propName] = (typeof prop.toJS === 'function') ? prop.toJS() : prop;
         }
         return result;
       } :
